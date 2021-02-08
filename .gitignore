@@ -1,3 +1,17 @@
-backend/target/
-**/*.rs.bk
+# Vim
 **/.*.swp
+
+# Rust
+backend/target/
+backend/data/
+**/*.rs.bk
+
+# Javascript
+frontend/node_modules
+
+# Quasar core related directories
+frontend/.quasar
+frontend/dist
+
+# python
+backend_tests/__pycache__
