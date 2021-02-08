@@ -2,7 +2,7 @@
 
 edts4c is a web application allowing to evaluate school children according to french law.
 
-Can be used for school "hors contrat" or individuals family not practicing school.
+Can be used for school "hors contrat" or individuals/family not practicing school.
 
 
 * backend is written in [rust](https://www.rust-lang.org/) with [Rocket](https://rocket.rs)
