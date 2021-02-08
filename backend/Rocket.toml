@@ -1,0 +1,5 @@
+[development]
+address = "127.0.0.1"
+
+[global.databases.postgres_database]
+url = "postgres://postgres:password@127.0.0.1:5432/postgres"

@@ -1,0 +1,10 @@
+pub mod competencies;
+pub mod components;
+pub mod cycles;
+pub mod domains;
+pub mod eleves;
+pub mod evaluations;
+pub mod general_comment;
+pub mod key_store;
+pub mod report;
+pub mod socle;
