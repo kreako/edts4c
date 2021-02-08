@@ -1,5 +1,5 @@
 # edts4c
 
-edts4c is a web application allowing to evaluate schoolboy according to french law.
+edts4c is a web application allowing to evaluate school children according to french law.
 
 
