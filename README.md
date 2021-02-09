@@ -101,7 +101,7 @@ $ py.test
 Build in release mode:
 
 ```
-./release.sh
+$ ./release.sh
 ```
 
 * Resulting frontend build is in : `frontend/dist/spa` and should be moved in a `frontend` directory at same level as `backend` binary.
