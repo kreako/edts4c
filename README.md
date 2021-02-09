@@ -8,7 +8,7 @@ Can be used for school "hors contrat" or individuals/family not practicing schoo
 * backend is written in [rust](https://www.rust-lang.org/) with [Rocket](https://rocket.rs)
 * frontend is written with [Vue.js](https://vuejs.org/) with [Quasar Framework](https://quasar.dev/)
 * some backend tests in python with the help of [Requests](https://requests.readthedocs.io/en/master/)
-* some frontend tests in javascript with [Cypress](https://www.cypress.io/)
+* some frontend tests in javascript with [Playwright](https://playwright.dev/)
 
 
 ## Requirements
@@ -74,7 +74,7 @@ $ quasar dev
 With backend and frontend running.
 
 ```
-$ yarn test:e2e:ci
+$ yarn test
 ```
 
 ### Backend tests
