@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "lint:fix": "eslint --fix --ext .js,.vue ./",
-    "test": "echo \"No test specified\" && exit 0",
+    "test": "folio test/playwright --param browserName=firefox --param screenshotOnFailure",
     "test:e2e": "cross-env E2E_TEST=true start-test \"quasar dev\" http-get://localhost:8080 \"cypress open\"",
     "test:e2e:ci": "cross-env E2E_TEST=true start-test \"quasar dev\" http-get://localhost:8080 \"cypress run\""
   },
@@ -20,6 +20,7 @@
     "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
+    "@playwright/test": "^0.180.0",
     "@quasar/app": "^2.0.0",
     "@quasar/quasar-app-extension-testing": "^1.0.3",
     "@quasar/quasar-app-extension-testing-e2e-cypress": "^2.0.4",
@@ -32,7 +33,8 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^6.1.2"
+    "eslint-plugin-vue": "^6.1.2",
+    "playwright": "^1.8.0"
   },
   "browserslist": [
     "last 10 Chrome versions",
