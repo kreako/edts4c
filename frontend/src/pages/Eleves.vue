@@ -8,7 +8,7 @@
         <div class="col">
         </div>
         <div class="col-auto">
-          <q-markup-table data-cy="eleves-table">
+          <q-markup-table data-test-id="eleves-table">
             <thead>
               <tr>
                 <td>
@@ -132,7 +132,7 @@
                     <q-btn color="primary" text-color="white" icon="save" label="Sauvegarder" size="sm" @click="save(eleve.id)"/>
                   </div>
                   <div v-if="inEdit !== eleve.id && saved(eleve.id)">
-                    <q-btn flat dense round color="grey-5" icon="more_vert">
+                    <q-btn flat dense round color="grey-5" icon="more_vert" data-test-id="eleves-more">
                       <q-menu>
                         <q-list>
                           <q-item clickable v-close-popup @click="edit(eleve.id)">
@@ -183,7 +183,7 @@
         </div>
       </div>
       <div class="flex flex-center q-my-xl">
-        <q-btn color="primary" text-color="white" icon="add_box" label="Nouvel élève" @click="showNewDialog" data-cy="eleves-new"/>
+        <q-btn color="primary" text-color="white" icon="add_box" label="Nouvel élève" @click="showNewDialog" data-test-id="eleves-new"/>
       </div>
     </div>
     <q-dialog v-model="newDialogShow">
@@ -197,19 +197,19 @@
             Prénom
         </q-item-label>
         <q-item dense>
-          <q-input v-model="firstnameNew" data-cy="eleves-new-firstname"/>
+          <q-input v-model="firstnameNew" data-test-id="eleves-new-firstname"/>
         </q-item>
         <q-item-label header>
             Nom
         </q-item-label>
         <q-item dense>
-          <q-input v-model="lastnameNew" data-cy="eleves-new-lastname"/>
+          <q-input v-model="lastnameNew" data-test-id="eleves-new-lastname"/>
         </q-item>
         <q-item-label header>
             Date de naissance
         </q-item-label>
         <q-item dense>
-          <q-input v-model="birthdateNew" mask="####-##-##" fill-mask hint="YYYY-MM-DD" data-cy="eleves-new-birthdate">
+          <q-input v-model="birthdateNew" mask="####-##-##" fill-mask hint="YYYY-MM-DD" data-test-id="eleves-new-birthdate">
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy transition-show="scale" transition-hide="scale">
@@ -227,7 +227,7 @@
             Date d'entrée à l'école
         </q-item-label>
         <q-item dense>
-          <q-input v-model="schoolEntryNew" mask="####-##-##" fill-mask hint="YYYY-MM-DD" data-cy="eleves-new-schoolentry">
+          <q-input v-model="schoolEntryNew" mask="####-##-##" fill-mask hint="YYYY-MM-DD" data-test-id="eleves-new-schoolentry">
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy transition-show="scale" transition-hide="scale">
@@ -245,11 +245,11 @@
             Cycle
         </q-item-label>
         <q-item dense>
-          <q-btn-toggle v-model="cycleNew" text-color="black" :options="cycleEditOptions" data-cy="eleves-new-cycle"/>
+          <q-btn-toggle v-model="cycleNew" text-color="black" :options="cycleEditOptions" data-test-id="eleves-new-cycle"/>
         </q-item>
         <q-separator/>
         <q-card-actions align="right">
-          <q-btn flat @click="newEleve" data-cy="eleves-new-save">
+          <q-btn flat @click="newEleve" data-test-id="eleves-new-save">
             Sauvegarder
           </q-btn>
         </q-card-actions>
