@@ -16,10 +16,10 @@ const routes = [
       { path: 'socle/domain/:domainId', component: () => import('pages/SocleComponents.vue') },
       { path: 'socle/domain/:domainId/component/:componentId', component: () => import('pages/SocleCompetencies.vue') },
       { path: 'socle/domain/:domainId/component/:componentId/competency/:competencyId', component: () => import('pages/SocleCompetency.vue') },
-      { path: 'eleves', component: () => import('pages/Eleves.vue') },
-      { path: 'support', component: () => import('pages/Index.vue') },
-      { path: 'rapports', component: () => import('pages/Reports.vue') },
-      { path: 'evaluations', component: () => import('pages/Evaluations.vue') },
+      { path: 'eleves/', component: () => import('pages/Eleves.vue') },
+      { path: 'support/', component: () => import('pages/Index.vue') },
+      { path: 'rapports/', component: () => import('pages/Reports.vue') },
+      { path: 'evaluations/', component: () => import('pages/Evaluations.vue') },
       { path: 'evaluation/:cycle/:componentId', component: () => import('pages/Evaluation.vue') }
     ]
   },

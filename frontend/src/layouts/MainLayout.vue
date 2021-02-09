@@ -2,18 +2,23 @@
   <q-layout view="hHh lpr fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round data-cy="menu-home-link" icon="home" aria-label="Accueil" to="/"/>
+        <q-btn icon="home" aria-label="Accueil" to="/"
+          flat dense round data-test-id="menu-home-link"/>
         <q-separator dark vertical inset class="q-mr-sm"/>
-        <q-btn flat dense data-cy="menu-evaluations-link" icon="leaderboard" label="Évaluations" aria-label="Évaluation" to="/evaluations"/>
+        <q-btn icon="leaderboard" label="Évaluations" to="/evaluations/"
+          flat dense data-test-id="menu-evaluations-link"/>
         <q-separator dark vertical inset class="q-mx-sm"/>
-        <q-btn flat dense data-cy="menu-eleves-link" icon="person" label="Élèves" aria-label="Élèves" to="/eleves"/>
+        <q-btn icon="person" label="Élèves" to="/eleves/"
+          flat dense data-test-id="menu-eleves-link"/>
         <q-separator dark vertical inset class="q-mx-sm"/>
-        <q-btn flat dense data-cy="menu-report-link" icon="timeline" label="Rapports" aria-label="Rapport" to="/rapports"/>
+        <q-btn icon="timeline" label="Rapports" to="/rapports/"
+          flat dense data-test-id="menu-report-link"/>
         <q-separator dark vertical inset class="q-mx-sm"/>
-        <q-btn flat dense data-cy="menu-socle-link" icon="school" label="Socle" aria-label="Socle" to="/socle/"/>
+        <q-btn icon="school" label="Socle" to="/socle/"
+          flat dense data-test-id="menu-socle-link"/>
         <q-space/>
-        <q-btn flat dense data-cy="menu-support-link" icon="support" label="À propos" aria-label="À propos" to="/support"/>
-
+        <q-btn icon="support" label="À propos" to="/support/"
+          flat dense data-test-id="menu-support-link"/>
       </q-toolbar>
     </q-header>
 
