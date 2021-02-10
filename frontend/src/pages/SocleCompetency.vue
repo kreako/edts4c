@@ -63,6 +63,8 @@
             <q-btn :to="`/socle/domain/${domain.id}/component/${component.id}/competency/${previousCompetencyId}`"
               :disable="!previousCompetencyId"
               icon="navigate_before"/>
+            <q-btn :to="`/socle/domain/${domain.id}/component/${component.id}`"
+              icon="keyboard_arrow_up"/>
             <q-btn :to="`/socle/domain/${domain.id}/component/${component.id}/competency/${nextCompetencyId}`"
               :disable="!nextCompetencyId"
               icon="navigate_next"/>

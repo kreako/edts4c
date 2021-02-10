@@ -56,6 +56,8 @@
             <q-btn :to="`/socle/domain/${previousDomainId}`"
               :disable="!previousDomainId"
               icon="navigate_before"/>
+            <q-btn :to="`/socle/`"
+              icon="keyboard_arrow_up"/>
             <q-btn :to="`/socle/domain/${nextDomainId}`"
               :disable="!nextDomainId"
               icon="navigate_next"/>

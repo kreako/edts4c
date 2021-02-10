@@ -60,6 +60,8 @@
             <q-btn :to="`/socle/domain/${domain.id}/component/${previousComponentId}`"
               :disable="!previousComponentId"
               icon="navigate_before"/>
+            <q-btn :to="`/socle/domain/${domain.id}`"
+              icon="keyboard_arrow_up"/>
             <q-btn :to="`/socle/domain/${domain.id}/component/${nextComponentId}`"
               :disable="!nextComponentId"
               icon="navigate_next"/>
