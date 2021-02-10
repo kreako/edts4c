@@ -119,6 +119,8 @@ export async function loadCompetency (context, competencyId) {
   context.commit('setDomain', response.data.domain)
   context.commit('setComponent', response.data.component)
   context.commit('setCompetency', response.data.competency)
+  context.commit('setNextCompetencyId', response.data.next_competency_id)
+  context.commit('setPreviousCompetencyId', response.data.previous_competency_id)
   context.commit('setLoading', false)
 }
 

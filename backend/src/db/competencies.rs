@@ -4,7 +4,7 @@ use crate::Result;
 use diesel;
 use diesel::dsl::max;
 use diesel::PgConnection;
-use diesel::{ExpressionMethods, QueryDsl, RunQueryDsl};
+use diesel::{ExpressionMethods, OptionalExtension, QueryDsl, RunQueryDsl};
 use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, Serialize, Deserialize, Debug, Clone)]
@@ -51,6 +51,40 @@ impl Competency {
         Ok(dsl::competencies
             .order(competencies::rank)
             .load::<Competency>(db)?)
+    }
+
+    pub fn next_competency_id(
+        db: &PgConnection,
+        component_id: i32,
+        rank: i32,
+    ) -> Result<Option<i32>> {
+        use crate::schema::competencies;
+        use crate::schema::competencies::dsl;
+        let id = dsl::competencies
+            .select(competencies::id)
+            .order(competencies::rank)
+            .filter(competencies::rank.gt(rank))
+            .filter(competencies::component_id.eq(component_id))
+            .first::<i32>(db)
+            .optional()?;
+        Ok(id)
+    }
+
+    pub fn previous_competency_id(
+        db: &PgConnection,
+        component_id: i32,
+        rank: i32,
+    ) -> Result<Option<i32>> {
+        use crate::schema::competencies;
+        use crate::schema::competencies::dsl;
+        let id = dsl::competencies
+            .select(competencies::id)
+            .order(competencies::rank.desc())
+            .filter(competencies::rank.lt(rank))
+            .filter(competencies::component_id.eq(component_id))
+            .first::<i32>(db)
+            .optional()?;
+        Ok(id)
     }
 
     /// Return the list of all competency id

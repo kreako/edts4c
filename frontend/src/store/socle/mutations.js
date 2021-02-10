@@ -191,7 +191,15 @@ export function setCompetencyCycle (state, { cycle, text }) {
   }
 }
 
-/// Below is not used anymore ?
+export function setNextCompetencyId (state, nextCompetencyId) {
+  state.nextCompetencyId = nextCompetencyId
+}
+
+export function setPreviousCompetencyId (state, previousCompetencyId) {
+  state.previousCompetencyId = previousCompetencyId
+}
+
+/// TODO Below is not used anymore ?
 
 export function setSocle (state, socle) {
   state.socle = socle

@@ -59,6 +59,14 @@
               cycle="C4" :competency="competency"
               @save="saveDetail"/>
           </q-list>
+          <div class="row justify-center q-mt-xl">
+            <q-btn :to="`/socle/domain/${domain.id}/component/${component.id}/competency/${previousCompetencyId}`"
+              :disable="!previousCompetencyId"
+              icon="navigate_before"/>
+            <q-btn :to="`/socle/domain/${domain.id}/component/${component.id}/competency/${nextCompetencyId}`"
+              :disable="!nextCompetencyId"
+              icon="navigate_next"/>
+          </div>
         </div>
         <div class="col">
         </div>
@@ -85,7 +93,9 @@ export default {
       loading: state => state.socle.loading,
       domain: state => state.socle.domain,
       component: state => state.socle.component,
-      competency: state => state.socle.competency
+      competency: state => state.socle.competency,
+      nextCompetencyId: state => state.socle.nextCompetencyId,
+      previousCompetencyId: state => state.socle.previousCompetencyId
     })
   },
   methods: {
@@ -99,6 +109,17 @@ export default {
     save: function () {
       this.inEdit = false
       this.$store.dispatch('socle/setCompetencyTitle', { competencyId: this.competency.id, title: this.editTitle })
+    }
+  },
+  watch: {
+    '$route.params.domainId': function (domainId) {
+      this.$store.dispatch('socle/loadCompetency', this.$route.params.competencyId)
+    },
+    '$route.params.componentId': function (componentId) {
+      this.$store.dispatch('socle/loadCompetency', this.$route.params.competencyId)
+    },
+    '$route.params.competencyId': function (competencyId) {
+      this.$store.dispatch('socle/loadCompetency', this.$route.params.competencyId)
     }
   },
   mounted: function () {

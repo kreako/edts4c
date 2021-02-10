@@ -16,6 +16,8 @@ export default function () {
     // To move competencies around
     domainsWithComponents: [],
     // Single competency
-    competency: {}
+    competency: {},
+    nextCompetencyId: null,
+    previousCompetencyId: null
   }
 }

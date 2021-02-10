@@ -30,10 +30,16 @@ pub fn by_component_id(db: DbConn, component_id: i32) -> Result<JsonValue> {
 #[get("/by_id/<competency_id>")]
 pub fn by_id(db: DbConn, competency_id: i32) -> Result<JsonValue> {
     let competency = Competency::by_id(&db, competency_id)?;
+    let next_competency_id =
+        Competency::next_competency_id(&db, competency.component_id, competency.rank)?;
+    let previous_competency_id =
+        Competency::previous_competency_id(&db, competency.component_id, competency.rank)?;
     let component = Component::by_id(&db, competency.component_id)?;
     let domain = Domain::by_id(&db, component.domain_id)?;
     Ok(json!({
         "competency": competency,
+        "next_competency_id": next_competency_id,
+        "previous_competency_id": previous_competency_id,
         "component": component,
         "domain": domain,
     }))
