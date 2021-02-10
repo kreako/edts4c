@@ -25,16 +25,58 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-dialog v-model="inError" persistent>
+      <q-card>
+        <q-card-section class="bg-negative">
+          <div class="text-h6 text-white">Erreur</div>
+        </q-card-section>
+
+        <q-card-section class="">
+          <div class="text-h6">
+            Une erreur est survenue et j'en suis bien désolé.
+          </div>
+          <div class="text-h6">
+            Merci de copier-coller tout ce qui s'affiche en dessous de ce message
+            et de me l'envoyer par mail !
+          </div>
+          <div class="pre-wrap">{{ message }}</div>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK, C'est bon, c'est envoyé !" color="negative" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-layout>
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 export default {
   name: 'MainLayout',
   data () {
     return {
     }
+  },
+  computed: {
+    ...mapState({
+      message: state => state.error.message
+    }),
+    inError: {
+      get () {
+        return this.$store.state.error.inError
+      },
+      set (value) {
+        this.$store.commit('error/setInError', value)
+      }
+    }
   }
 }
 </script>
+
+<style>
+.pre-wrap {
+  white-space: pre-wrap;
+}
+</style>

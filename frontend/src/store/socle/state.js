@@ -16,8 +16,6 @@ export default function () {
     // To move competencies around
     domainsWithComponents: [],
     // Single competency
-    competency: {},
-    // TODO
-    socle: []
+    competency: {}
   }
 }

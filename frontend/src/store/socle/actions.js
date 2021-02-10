@@ -138,7 +138,6 @@ export async function loadComponent (context, componentId) {
 }
 
 export async function setTitle (context, { id, title, type }) {
-  // TODO what happens if failure
   if (type === 'domains') {
     await axios.put(`/api/domains/set_title/${id}`, { title: title })
     context.commit('updateDomainTitle', { id: id, title: title })

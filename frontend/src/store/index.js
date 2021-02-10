@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import error from './error'
 import socle from './socle'
 import eleves from './eleves'
 import evaluations from './evaluations'
@@ -21,7 +22,7 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      socle, eleves, evaluations, evaluation, report
+      error, socle, eleves, evaluations, evaluation, report
     },
 
     // enable strict mode (adds overhead!)
