@@ -9,4 +9,5 @@ quasar clean
 quasar build
 
 # Build backend
+cd ../backend
 cargo build --release
