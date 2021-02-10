@@ -151,7 +151,7 @@ export default {
     '$route.params.domainId': function (domainId) {
       this.$store.dispatch('socle/loadCompetencies', this.$route.params.componentId)
     },
-    '$route.params.componentId': function (domainId) {
+    '$route.params.componentId': function (componentId) {
       this.$store.dispatch('socle/loadCompetencies', this.$route.params.componentId)
     }
   },
