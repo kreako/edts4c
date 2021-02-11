@@ -16,3 +16,6 @@ frontend/dist
 # python
 backend_tests/__pycache__
 backend_tests/env
+
+# private deployment script
+deploy.sh
