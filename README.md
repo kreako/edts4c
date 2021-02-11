@@ -1,6 +1,6 @@
 # edts4c
 
-edts4c is a web application allowing to evaluate school children according to french law.
+edts4c is a web application allowing to evaluate students according to french law.
 
 Can be used for school "hors contrat" or individuals/family not practicing school.
 
@@ -9,6 +9,14 @@ Can be used for school "hors contrat" or individuals/family not practicing schoo
 * frontend is written with [Vue.js](https://vuejs.org/) with [Quasar Framework](https://quasar.dev/)
 * some backend tests in python with the help of [Requests](https://requests.readthedocs.io/en/master/)
 * some frontend tests in javascript with [Playwright](https://playwright.dev/)
+
+## Screenshots
+
+![Screenshot of students list](https://raw.githubusercontent.com/kreako/edts4c/main/screenshots/eleves.png)
+
+![Screenshot of socle edition](https://raw.githubusercontent.com/kreako/edts4c/main/screenshots/socle-move.png)
+
+More in [screenshots](https://github.com/kreako/edts4c/tree/main/screenshots) directory.
 
 
 ## Requirements
