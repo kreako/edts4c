@@ -160,6 +160,41 @@ it('is able to create/delete an eleve', async ({ page }) => {
     x => x.innerText)
   ).toBe('C1(C4)')
 
+  // Now reload
+  await page.reload()
+
+  // And check again
+  // Wait for the row to appear
+  await page.waitForSelector('text=Babibou')
+  // Reuse the index - should be the same
+
+  // Check infos
+  // firstname index + 1 because nth-child is 1 based
+  expect(await page.$eval(
+    `[data-test-id=eleves-table] tbody > :nth-child(${index + 1}) > :nth-child(1)`,
+    x => x.innerText)
+  ).toBe('Babibou')
+  // lastname
+  expect(await page.$eval(
+    `[data-test-id=eleves-table] tbody > :nth-child(${index + 1}) > :nth-child(2)`,
+    x => x.innerText)
+  ).toBe('Bibibou')
+  // birthdate
+  expect(await page.$eval(
+    `[data-test-id=eleves-table] tbody > :nth-child(${index + 1}) > :nth-child(3)`,
+    x => x.innerText)
+  ).toBe('1988-03-12')
+  // school entry
+  expect(await page.$eval(
+    `[data-test-id=eleves-table] tbody > :nth-child(${index + 1}) > :nth-child(4)`,
+    x => x.innerText)
+  ).toBe('2020-05-13')
+  // cycle
+  expect(await page.$eval(
+    `[data-test-id=eleves-table] tbody > :nth-child(${index + 1}) > :nth-child(5)`,
+    x => x.innerText)
+  ).toBe('C1(C4)')
+
   // Now delete
   // first click more
   await page.click(
