@@ -205,3 +205,94 @@ it('is able to create/delete an eleve', async ({ page }) => {
   // Check that Babibou is not displayed anymore
   await page.waitForSelector('text=Babibou', { state : 'hidden' })
 })
+
+it('is able to modify an eleve', async ({ page }) => {
+  // Navigate
+  await page.goto('http://0.0.0.0:8080/#/eleves')
+
+  // Wait for table to appear
+  await page.waitForSelector('data-test-id=eleves-table')
+
+  // entry 3 before modification
+  const before = await page.$$eval(
+    '[data-test-id=eleves-table] tbody > :nth-child(3) > td',
+    tds => tds.map(x => x.innerText))
+
+  // Now modify
+  // first click more
+  await page.click(
+    `[data-test-id=eleves-table] tbody > :nth-child(3) [data-test-id=eleves-more]`)
+  // then click modify
+  await page.click('text=/.*Modifier.*/')
+  // Find inputs
+  let inputs = await page.$$('[data-test-id=eleves-table] input')
+  // Fill data
+  await inputs[0].fill('Babou')
+  await inputs[1].fill('Bibou')
+  // Very old student
+  await inputs[2].fill('1234-03-12')
+  await inputs[3].fill('2020-04-16')
+  await page.click(`button[role="button"] >> text="C1"`)
+  await page.click('text="Sauvegarder"')
+
+  // Wait for spinner to go away
+  await page.waitForSelector('text=/.*Babou.*/')
+
+  // entry 3 after modification
+  const after = await page.$$eval(
+    '[data-test-id=eleves-table] tbody > :nth-child(3) > td',
+    tds => tds.map(x => x.innerText))
+  expect(after[0]).toBe('Babou')
+  expect(after[1]).toBe('Bibou')
+  expect(after[2]).toBe('1234-03-12')
+  expect(after[3]).toBe('2020-04-16')
+  expect(after[4]).toBe('C1(C4)')
+
+  // Reload to check backend values
+  await page.reload()
+
+  // Check again after reload
+  // Wait for spinner to go away
+  await page.waitForSelector('text=/.*Babou.*/')
+
+  // entry 3 after modification
+  const afterReload = await page.$$eval(
+    '[data-test-id=eleves-table] tbody > :nth-child(3) > td',
+    tds => tds.map(x => x.innerText))
+  expect(afterReload[0]).toBe('Babou')
+  expect(afterReload[1]).toBe('Bibou')
+  expect(afterReload[2]).toBe('1234-03-12')
+  expect(afterReload[3]).toBe('2020-04-16')
+  expect(afterReload[4]).toBe('C1(C4)')
+
+  // Go back to original values
+  // first click more
+  await page.click(
+    `[data-test-id=eleves-table] tbody > :nth-child(3) [data-test-id=eleves-more]`)
+  // then click modify
+  await page.click('text=/.*Modifier.*/')
+  // Fill data
+  // Find inputs
+  inputs = await page.$$('[data-test-id=eleves-table] input')
+  // Fill data
+  await inputs[0].fill(before[0])
+  await inputs[1].fill(before[1])
+  // Very old student
+  await inputs[2].fill(before[2])
+  await inputs[3].fill(before[3])
+  await page.click(`button[role="button"] >> text="${before[4]}"`)
+  await page.click('text="Sauvegarder"')
+
+  // Wait for spinner to go away
+  await page.waitForSelector(`text=/.*${before[0]}.*/`)
+
+  // entry 3 final modification
+  const end = await page.$$eval(
+    '[data-test-id=eleves-table] tbody > :nth-child(3) > td',
+    tds => tds.map(x => x.innerText))
+  expect(end[0]).toBe(before[0])
+  expect(end[1]).toBe(before[1])
+  expect(end[2]).toBe(before[2])
+  expect(end[3]).toBe(before[3])
+  expect(end[4]).toBe(before[4])
+})
