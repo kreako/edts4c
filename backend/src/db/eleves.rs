@@ -33,6 +33,13 @@ impl Eleve {
         Ok(eleves?)
     }
 
+    /// Return the list of all eleve id
+    pub fn all_id(db: &PgConnection) -> Result<Vec<i32>> {
+        use crate::schema::eleves;
+        use crate::schema::eleves::dsl;
+        Ok(dsl::eleves.select(eleves::id).load::<i32>(db)?)
+    }
+
     /// Return eleves, only the active ones from a cycle
     pub fn by_cycle(db: &PgConnection, cycle: &Cycle) -> Result<Vec<Eleve>> {
         use crate::schema::eleves;

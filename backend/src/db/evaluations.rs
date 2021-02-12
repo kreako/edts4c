@@ -92,6 +92,25 @@ SELECT id, eleve_id, competency_id, status, comment
         Ok(())
     }
 
+    /// Create empty evaluation for a new competency
+    pub fn create_empty_for_competency(db: &PgConnection, competency_id: i32) -> Result<()> {
+        use crate::schema::evaluations;
+        use crate::schema::evaluations::dsl;
+        let mut data = vec![];
+        let eleves = Eleve::all_id(db)?;
+        for eleve_id in eleves.iter() {
+            data.push((
+                evaluations::eleve_id.eq(eleve_id),
+                evaluations::competency_id.eq(competency_id),
+                evaluations::status.eq("Empty".to_string()),
+            ));
+        }
+        diesel::insert_into(dsl::evaluations)
+            .values(&data)
+            .execute(db)?;
+        Ok(())
+    }
+
     /// Set empty status of an evaluation
     pub fn set_empty_status(db: &PgConnection, log: &Logger, id: i32) -> Result<()> {
         use crate::schema::evaluations;
@@ -169,6 +188,15 @@ SELECT id, eleve_id, competency_id, status, comment
             "comment".to_string(),
             comment,
         )?;
+        Ok(())
+    }
+
+    pub fn delete_competency(db: &PgConnection, competency_id: i32) -> Result<()> {
+        use crate::schema::evaluations;
+        use crate::schema::evaluations::dsl;
+        // Delete
+        diesel::delete(dsl::evaluations.filter(evaluations::competency_id.eq(competency_id)))
+            .execute(db)?;
         Ok(())
     }
 }
