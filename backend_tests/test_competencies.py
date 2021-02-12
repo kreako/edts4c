@@ -63,3 +63,10 @@ def test_competencies_append():
     # Now delete
     response = requests.delete(url(f"delete/{competency['id']}"))
     assert response.status_code == 200
+
+    # Check if report still works
+    response = requests.get(report_url("summary/C1"))
+    assert response.status_code == 200
+
+    response = requests.get(report_url("full/C1"))
+    assert response.status_code == 200
