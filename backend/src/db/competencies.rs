@@ -1,4 +1,5 @@
 use crate::db::cycles::Cycle;
+use crate::db::evaluations::Evaluation;
 use crate::db_log::Logger;
 use crate::Result;
 use diesel;
@@ -222,6 +223,8 @@ impl Competency {
             ))
             .returning(competencies::id)
             .get_result(db)?;
+        // Fill evaluations with empty
+        Evaluation::create_empty_for_competency(db, competency_id)?;
         // return the new one
         Competency::by_id(db, competency_id)
     }
@@ -230,6 +233,8 @@ impl Competency {
         use crate::schema::competencies;
         use crate::schema::competencies::dsl;
         let competency = Competency::by_id(db, id)?;
+        // First delete evaluations associated with this competency
+        Evaluation::delete_competency(db, id)?;
         // Delete
         diesel::delete(dsl::competencies.filter(competencies::id.eq(id))).execute(db)?;
         // Fix rank of the component_id
